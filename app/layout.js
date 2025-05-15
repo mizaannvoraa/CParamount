@@ -15,9 +15,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Classic Paramount",
+  title: "Welcome to Classic Paramount",
   description:
     "We aim to offer comprehensive services, whether it's buying, selling, renting, or managing properties.",
+    icons: {
+     icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }) {
