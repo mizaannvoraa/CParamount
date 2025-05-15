@@ -79,7 +79,7 @@ export default function ContactForm() {
           "https://script.google.com/macros/s/AKfycbxACDHcXZaxzcaWH_0-JMkKPIChjJZA-BMA6ozCvSQqAjFa7mLCfVegeEWVP2q756RZsQ/exec",
           {
             method: "POST",
-            mode: "no-cors", 
+            mode: "no-cors",
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
@@ -141,7 +141,7 @@ export default function ContactForm() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
-                className="w-full rounded-full border border-gray-300 px-5 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-600 placeholder-black"
+                className="w-full rounded-full border border-gray-300 !text-black px-5 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-600 placeholder-black"
               />
               {formik.touched.name && formik.errors.name && (
                 <div className="text-red-500 text-sm mt-1 ml-5">
@@ -160,7 +160,7 @@ export default function ContactForm() {
                   name: "phone",
                   required: true,
                 }}
-                inputClass="!w-full !pl-17 !pr-5 !py-6 !px-5 !rounded-full !text-[16px] !border-none !shadow-none !bg-transparent !placeholder-black focus:outline-none"
+                inputClass="!w-full !pl-17 !pr-5 !py-6 !px-5 !rounded-full !text-[16px] !border-none !text-black !shadow-none !bg-transparent !placeholder-black focus:outline-none"
                 containerClass="!w-full  !rounded-full !border !border-gray-300 !shadow-sm !flex !items-center focus-within:ring-2 focus-within:ring-yellow-600"
                 buttonClass="!bg-gray-100  !border-none !rounded-l-full !h-full !flex !items-center !pl-4"
                 dropdownClass="!rounded-md"
@@ -180,7 +180,7 @@ export default function ContactForm() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
-                className="w-full rounded-full border border-gray-300 px-5 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-600 placeholder-black"
+                className="w-full rounded-full border !text-black border-gray-300 px-5 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-600 placeholder-black"
               />
               {formik.touched.email && formik.errors.email && (
                 <div className="text-red-500 text-sm mt-1 ml-5">
@@ -188,25 +188,27 @@ export default function ContactForm() {
                 </div>
               )}
             </div>
-            <div>
-              <select
-                name="project"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.project}
-                className="w-full rounded-full border border-gray-300 px-5 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-600"
-              >
-                <option value="">Select Project*</option>
-                <option value="Project A">Project A</option>
-                <option value="Project B">Project B</option>
-                <option value="Project C">Project C</option>
-              </select>
-              {formik.touched.project && formik.errors.project && (
+           <div>
+             <select
+              name="project"
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.project}
+              className="w-full rounded-full border border-gray-300 px-5 py-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-600 text-black "
+            >
+              <option value="" disabled hidden>
+                Select Project*
+              </option>
+              <option value="Project A">Project A</option>
+              <option value="Project B">Project B</option>
+              <option value="Project C">Project C</option>
+            </select>
+             {formik.touched.project && formik.errors.project && (
                 <div className="text-red-500 text-sm mt-1 ml-5">
                   {formik.errors.project}
                 </div>
               )}
-            </div>
+           </div>
 
             <div className="md:col-span-2 flex justify-center">
               <button

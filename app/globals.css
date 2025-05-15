@@ -32,6 +32,7 @@ html {
 .react-tel-input .form-control::placeholder {
   color: black !important;
 }
+
 .custom-swiper-pagination .swiper-pagination-bullet {
   background-color: black !important;
   opacity: 1;

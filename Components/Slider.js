@@ -58,7 +58,7 @@ export default function Slider() {
       </div>
 
       {/* Mobile Swiper */}
-      <div className="block md:hidden -mt-17">
+      <div className="block md:hidden mt-0">
         <Swiper
           slidesPerView={1}
           spaceBetween={0}

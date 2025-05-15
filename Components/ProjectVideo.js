@@ -53,7 +53,7 @@ export default function ProjectVideo() {
         {navigationReady && (
           <Swiper
             modules={[Navigation]}
-            spaceBetween={16}
+            spaceBetween={15}
             slidesPerView={1.1}
             breakpoints={{
               640: { slidesPerView: 2.2 },
@@ -71,7 +71,7 @@ export default function ProjectVideo() {
             {videos.map((video, index) => (
               <SwiperSlide key={index}>
                 <AnimateCard animationClass="animate__rotateInDownLeft">
-                  <div className="relative overflow-hidden mt-8">
+                  <div className="relative overflow-hidden mt-8 ">
                     <iframe
                       className="w-full h-48 sm:h-56 md:h-64 lg:h-72"
                       src={`https://www.youtube.com/embed/${video.youtubeId}`}

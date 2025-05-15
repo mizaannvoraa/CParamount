@@ -18,8 +18,7 @@ export default function ContactModalForm({ onClose }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-    // Get URL parameters when the component mounts
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const query = new URLSearchParams(window.location.search);
       const params = {
         utm_ad: query.get("utm_ad") || "",
@@ -29,7 +28,6 @@ export default function ContactModalForm({ onClose }) {
       };
       setUrlParams(params);
 
-      // Store parameters in localStorage
       Object.entries(params).forEach(([key, value]) => {
         if (value) localStorage.setItem(key, value);
       });
@@ -50,15 +48,26 @@ export default function ContactModalForm({ onClose }) {
         .required("Email is required"),
     }),
     onSubmit: async (values, { resetForm }) => {
-      // Prevent default form submission behavior
       setIsSubmitting(true);
       setStatus("Submitting...");
 
-      // Get UTM parameters from state or localStorage
-      const utm_ad = urlParams.utm_ad || (typeof window !== 'undefined' && localStorage.getItem("utm_ad")) || "";
-      const utm_placement = urlParams.utm_placement || (typeof window !== 'undefined' && localStorage.getItem("utm_placement")) || "";
-      const gclid = urlParams.gclid || (typeof window !== 'undefined' && localStorage.getItem("gclid")) || "";
-      const fbclid = urlParams.fbclid || (typeof window !== 'undefined' && localStorage.getItem("fbclid")) || "";
+      const utm_ad =
+        urlParams.utm_ad ||
+        (typeof window !== "undefined" && localStorage.getItem("utm_ad")) ||
+        "";
+      const utm_placement =
+        urlParams.utm_placement ||
+        (typeof window !== "undefined" &&
+          localStorage.getItem("utm_placement")) ||
+        "";
+      const gclid =
+        urlParams.gclid ||
+        (typeof window !== "undefined" && localStorage.getItem("gclid")) ||
+        "";
+      const fbclid =
+        urlParams.fbclid ||
+        (typeof window !== "undefined" && localStorage.getItem("fbclid")) ||
+        "";
 
       const formData = {
         ...values,
@@ -78,7 +87,7 @@ export default function ContactModalForm({ onClose }) {
           "https://script.google.com/macros/s/AKfycbxACDHcXZaxzcaWH_0-JMkKPIChjJZA-BMA6ozCvSQqAjFa7mLCfVegeEWVP2q756RZsQ/exec",
           {
             method: "POST",
-            mode: "no-cors", // Add this to handle CORS issues
+            mode: "no-cors",
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
@@ -86,12 +95,9 @@ export default function ContactModalForm({ onClose }) {
           }
         );
 
-        // Since we're using no-cors, we can't actually read the response
-        // So we'll assume success if no error is thrown
         setStatus("Form submitted successfully!");
         resetForm();
-        
-        // Optional: close modal after successful submission
+
         setTimeout(() => {
           onClose();
         }, 2000);
@@ -106,12 +112,12 @@ export default function ContactModalForm({ onClose }) {
 
   return (
     <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
-      <div className="relative bg-white rounded-2xl w-full max-w-2xl p-6 shadow-lg">
+      <div className="relative bg-white rounded-[4px] w-full max-w-2xl p-6 shadow-lg">
         {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-black text-2xl font-bold hover:text-red-600"
+          className="absolute top-4 right-4 text-black text-[27px] font-bold hover:text-red-600"
         >
           &times;
         </button>
@@ -143,7 +149,7 @@ export default function ContactModalForm({ onClose }) {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.name}
-              className="w-full rounded-full border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-600"
+              className="w-full rounded-full border placeholder:text-black text-black border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-600"
             />
             {formik.touched.name && formik.errors.name && (
               <div className="text-red-500 text-sm mt-1 ml-5">
@@ -161,10 +167,11 @@ export default function ContactModalForm({ onClose }) {
               inputProps={{
                 name: "phone",
                 required: true,
-                className: "!w-full !pl-16 !pr-5 !py-3 !rounded-full focus:outline-none",
+                className:
+                  "!w-full !pl-16 !pr-5 !py-3 !rounded-full focus:outline-none",
               }}
-              inputClass="!w-full !pl-17 !pr-5 !py-6 !px-5 !rounded-full !text-[16px] !border-none !shadow-none !bg-transparent placeholder:text-gray-400 focus:outline-none"
-              containerClass="!w-full !rounded-full !border !border-gray-300 !shadow-sm !flex !items-center focus-within:ring-2 focus-within:ring-yellow-600"
+              inputClass="!w-full !pl-17 !pr-5 !py-6 !px-5 !rounded-full !text-black !text-[16px] !border-none !shadow-none !bg-transparent placeholder:text-gray-400 focus:outline-none"
+              containerClass="!w-full !rounded-full !border !border-gray-300 !text-black !shadow-sm !flex !items-center focus-within:ring-2 focus-within:ring-yellow-600"
               buttonClass="!bg-gray-100 !border-none !rounded-l-full !h-full !flex !items-center !pl-4"
               dropdownClass="!rounded-md"
               placeholder="Phone*"
@@ -184,7 +191,7 @@ export default function ContactModalForm({ onClose }) {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
-              className="w-full rounded-full border border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-600"
+              className="w-full rounded-full border placeholder:text-black text-black border-gray-300 px-5 py-3 focus:outline-none focus:ring-2 focus:ring-yellow-600"
             />
             {formik.touched.email && formik.errors.email && (
               <div className="text-red-500 text-sm mt-1 ml-5">
