@@ -26,14 +26,7 @@ const videos = [
     title: "Sea Horizon Towers Preview",
     youtubeId: "xGEKzSsU2Ro?si=UDfQtstIwWhHpvlI",
   },
-  {
-    title: "Sea Horizon Towers Preview",
-    youtubeId: "l482T0yNkeo",
-  },
-  {
-    title: "Sea Horizon Towers Preview",
-    youtubeId: "l482T0yNkeo",
-  },
+
 ];
 
 export default function ProjectVideo() {

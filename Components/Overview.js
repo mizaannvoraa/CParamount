@@ -16,14 +16,12 @@ const Overview = () => {
         </div>
 
         <div className="max-w-[1190px] mx-auto flex flex-col lg:flex-row items-center mt-6 lg:mt-10 gap-6 lg:gap-2">
-  {/* Video Section - Explicitly set to take 50% width */}
   <div className="w-full lg:w-1/2 px-2 flex items-center justify-center">
     <AnimateCard animationClass="animate__backInLeft">
       <Image src='/assets/overview_image.jpg' width={1000} height={500} alt="overview_image" className="w-full h-[320px]"/>
     </AnimateCard>
   </div>
 
-  {/* Text Section - Explicitly set to take 50% width */}
   <div className="w-full lg:w-1/2 px-2">
     <AnimateCard animationClass="animate__backInRight">
       <div className="flex flex-col text-[#414141] items-start gap-3">
@@ -35,7 +33,7 @@ const Overview = () => {
         <p className="text-xl font-bold">Vision</p>
         <p>
           When thinking of an ideal life, we always start with the place
-          that we call 'home' not just a mere house.
+          that we call home not just a mere house.
         </p>
         <p className="text-xl font-bold font-sans">Mission</p>
         <p>

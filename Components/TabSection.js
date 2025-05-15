@@ -19,18 +19,18 @@ const projects = [
     tab: "Sobha",
     name: "Sobha Uaq downtown",
     location: "UAE (Umm Al QUAIN Downtown)",
-    config: "1, 2, 3 Bedroom Residences",
+    config: "1,2,3 Bedroom Residences",
     price: "1.11 Million AED",
     image: "/assets/S1.jpg",
-    rera: "",
+    rera: "n/A",
     description:
       "This word suggests a unique combination of waterfront peacefulness and mountain-inspired elevation (high-rise towers of the cluster), offering residents a beachfront lifestyle experience where they can enjoy both the whispers of oceanic waves and the grandeur of views from the high-rise buildings.",
   },
   {
     id: "C1",
     tab: "Sobha",
-    name: "Sobha hartland II",
-    location: "Meydan (Bukadra),Dubai,UAE.(SOBHA HARTLAND II)",
+    name: "Sobha Hartland II",
+    location: "Meydan (Bukadra),Dubai,UAE(SOBHA HARTLAND II)",
     config: "1 , 2 & 3 BEDROOM APARTMENTS",
     price: "1.3 Million AED",
     image: "/assets/S2.jpg",
@@ -44,9 +44,9 @@ const projects = [
     name: "Sobha jlt",
     location: "UAE",
     config: " 1, 1.5, 2 & 3 Bed",
-    price: "1.58 Million AED",
+    price: "1,580,796 AED",
     image: "/assets/Sobha Jlt.jpg",
-    rera: "P51800076543",
+    rera: "N/A",
     description:
       "Pre launching Verde by Sobha. Embrace a new kind of living in Dubai's one of the most coveted districts-JLT, surrounded by crafted lakes, thriving residential complexes, buzzing high streets and more.With 66 stories, SOBHA Verde is one of the tallest residential skyscrapers oering picturesque views of the lush green meadows and emerald golf course. The uber-luxury homes are designed to suit the discerning tastes of the globe trotters with class-apart amenities.",
   },
@@ -60,44 +60,32 @@ const projects = [
     image: "/assets/D1.jpg",
     rera: "3698",
     description:
-      "The heart of Paradise at the core of our tropical haven, the central Hub Fountain stands as a mesmerising focal point. This aquatic masterpiece isn't just water it's a living, breathing spectacle where elements dance in harmony.",
+      "The heart of Paradise at the core of our tropical haven, the central Hub Fountain stands as a mesmerising focal point. This aquatic masterpiece isn't just water it's a living, breathing spectacle where elements dance in harmony.Watch as droplets pirouette with light beams, and flames flirt playfully with laser beams, creating a symphony for the senses.",
   },
   {
     id: "C5",
     tab: "Damac",
-    name: "Waterfront Towers",
-    location: "Mahim, Mumbai",
-    config: "2, 3 & 4 BHK FLATS",
-    price: "6.0 Cr.* (All Incl.)",
+    name: "Maritime city Chelsea tower",
+    location: "Dubai Maritime City(DMC)",
+    config: "1, 2 & 3 Bedrooms",
+    price: "2.17 Million",
     image: "/assets/D2.jpg",
-    rera: "P51900098765",
+    rera: "N/A",
     description:
-      "Waterfront Towers offers a luxurious lifestyle with stunning views of the Arabian Sea, located in the prime area of Mahim.",
+      "  The towers are a distillation of Chelsea’s very essence - their passion, pride as well as purpose and brought to life in the most luxuriously timeless way possible. Each of the towers blurs the line between contemporary urban and indulgent, waterfront resort-style living like never before.",
   },
-  // {
-  //   id: "C6",
-  //   tab: "Damac",
-  //   name: "Waterfront Towers",
-  //   location: "Mahim, Mumbai",
-  //   config: "2, 3 & 4 BHK FLATS",
-  //   price: "6.0 Cr.* (All Incl.)",
-  //   image: "/assets/elixir.jpg",
-  //   rera: "P51900098765",
-  //   description:
-  //     "Waterfront Towers offers a luxurious lifestyle with stunning views of the Arabian Sea, located in the prime area of Mahim.",
-  // },
-  // {
-  //   id: "C7",
-  //   tab: "Damac",
-  //   name: "Waterfront Towers",
-  //   location: "Mahim, Mumbai",
-  //   config: "2, 3 & 4 BHK FLATS",
-  //   price: "6.0 Cr.* (All Incl.)",
-  //   image: "/assets/elixir.jpg",
-  //   rera: "P51900098765",
-  //   description:
-  //     "Waterfront Towers offers a luxurious lifestyle with stunning views of the Arabian Sea, located in the prime area of Mahim.",
-  // },
+  {
+    id: "C6",
+    tab: "Damac",
+    name: "Damac la Violeta 4",
+    location: "DAMAC Hills 2",
+    config: "4 Bed Townhouse",
+    price: "2,515,000 AED",
+    image: "/assets/elixir.jpg",
+    rera: "N/A",
+    description:
+      "Violet 4 is part of a community where every moment becomes a lasting memory. Where you can attend a yoga class, go tanning and float down a lazy river all before lunch.Where your kids can paint the town red, and blue, catch a wave or two and play to their, and your heart's content. This is the community you never knew you needed, and more.",
+  },
   {
     id: "C8",
     tab: "Emaar",
@@ -138,7 +126,8 @@ const projects = [
     id: "C11",
     tab: "Binghatti",
     name: "Binghatti hillsview (science park arjan)",
-    location: "Al Barsha South 2,near Al Khail Road (Opp emaar Dubai Hills estate)",
+    location:
+      "Al Barsha South 2,near Al Khail Road (Opp emaar Dubai Hills estate)",
     config: "1 & 2 Bedroom Apartments",
     price: "0.75 Million AED.",
     image: "/assets/B1.jpg",
@@ -161,24 +150,24 @@ const projects = [
   {
     id: "C13",
     tab: "Binghatti",
-    name: "Waterfront Towers",
-    location: "Mahim, Mumbai",
-    config: "2, 3 & 4 BHK FLATS",
-    price: "6.0 Cr.* (All Incl.)",
+    name: "N/A",
+    location: "N/A",
+    config: "N/A",
+    price: "N/A",
     image: "/assets/B3.jpg",
-    rera: "P51900098765",
+    rera: "N/a",
     description:
-      "Waterfront Towers offers a luxurious lifestyle with stunning views of the Arabian Sea, located in the prime area of Mahim.",
+      "N/A",
   },
   {
     id: "C14",
     tab: "Binghatti",
-    name: "Waterfront Towers",
-    location: "Mahim, Mumbai",
-    config: "2, 3 & 4 BHK FLATS",
-    price: "6.0 Cr.* (All Incl.)",
+    name: "N/A",
+    location: "N/A",
+    config: "N/A",
+    price: "N/A",
     image: "/assets/B4.jpg",
-    rera: "P51900098765",
+    rera: "N/A",
     description:
       "Waterfront Towers offers a luxurious lifestyle with stunning views of the Arabian Sea, located in the prime area of Mahim.",
   },
@@ -240,7 +229,7 @@ export default function TabSection() {
         {/* Slider */}
         <div className="relative">
           <Swiper
-            modules={[Navigation, Pagination, Autoplay]} // Added Autoplay to modules
+            modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={20}
             slidesPerView={1}
             loop={shouldEnableLoop}

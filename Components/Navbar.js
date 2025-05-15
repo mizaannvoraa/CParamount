@@ -20,7 +20,7 @@ const Navbar = () => {
     { label: "Contact Us", href: "#contact" },
   ];
 
-  if (!hasMounted) return null; // Prevent hydration mismatch
+  if (!hasMounted) return null; 
 
   return (
     <nav className="bg-white sticky top-0 z-50">

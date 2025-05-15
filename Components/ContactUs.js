@@ -30,7 +30,6 @@ export default function ContactForm() {
 
       setUrlParams(params);
 
-      // Store to localStorage
       Object.entries(params).forEach(([key, value]) =>
         localStorage.setItem(key, value)
       );
@@ -80,7 +79,7 @@ export default function ContactForm() {
           "https://script.google.com/macros/s/AKfycbxACDHcXZaxzcaWH_0-JMkKPIChjJZA-BMA6ozCvSQqAjFa7mLCfVegeEWVP2q756RZsQ/exec",
           {
             method: "POST",
-            mode: "no-cors", // We can't read the response
+            mode: "no-cors", 
             headers: {
               "Content-Type": "application/x-www-form-urlencoded",
             },
@@ -101,7 +100,7 @@ export default function ContactForm() {
 
   return (
     <>
-      <AnimateCard animationClass="animate__lightSpeedInLeft">
+      <AnimateCard animationClass="animate__fadeIn">
         <div
           className="bg-gray-100 pb-5 lg:pb-13 px-4 l lg:py-0 py-5"
           id="contact"
