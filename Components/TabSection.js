@@ -117,7 +117,7 @@ const projects = [
     location: "Emaar South,Dubai",
     config: "3 & 4 Bedroom Apartments",
     price: "3.5 Million AED",
-    image: "/assets/elixir.jpg",
+    image: "/assets/EmaarGreen.jpg",
     rera: "3558",
     description:
       "Emaar South is a dynamic family-orientated community set amid lush landscapes and a championship golf course. Designed for modern living, it features pedestrian-friendly paths, top schools, retail, healthcare,and luxury hotels—all just steps away. With elegant villas, Homes,and world-class amenities, Emaar South offers an energetic,convenience-focused lifestyle where families can thrive, grow and explore endless possibilities.",
