@@ -48,7 +48,7 @@ const projects = [
     image: "/assets/Sobha Jlt.jpg",
     rera: "Pre Launch",
     description:
-      "Sheikh Zayed Road at your doorstep. Within walking distance of the Jebel Ali Metro Station. Fast access to Dubai Marina, AlKhail, Downtown, DIFC, and beyond. This is a location that moves with you—no detours,no delays. Whether it’s the morning rush,a late-night grocery run, or weekend plans across town, every direction feels effortless.All paths point to Sobha Central",
+      "Set along Sheikh Zayed Road, Sobha Central sits at the intersection of movement, meaning, and modernity. With the Dubai skyline as your backdrop and the city’s pulse at your doorstep, this address redefines what it means to live in the centre of it all. Designed for those who seek balance—between work and home, pace and pause—it o ers direct access to business hubs, retail districts, and the vibrant energy of urban life.",
   },
   {
     id: "C4",
@@ -120,7 +120,7 @@ const projects = [
     image: "/assets/EmaarGreen.jpg",
     rera: "3558",
     description:
-      "Emaar South is a dynamic family-orientated community set amid lush landscapes and a championship golf course. Designed for modern living, it features pedestrian-friendly paths, top schools, retail, healthcare,and luxury hotels—all just steps away. With elegant villas, Homes,and world-class amenities, Emaar South offers an energetic,convenience-focused lifestyle where families can thrive, grow and explore endless possibilities.",
+    "Greenspoint isn’t just a home—it’s a vibrant community built to keep you moving. Glide through dedicated cycling trails, jog beneath the shade of lush trees, or unwind with your family in the neighbourhood parks. Here, every path leads to a life full of energy and vitality.",
   },
   {
     id: "C11",
@@ -168,7 +168,7 @@ const projects = [
     image: "/assets/B4.jpg",
     rera: "2545",
     description:
-      "Welcome to Dubai A captivating city, where all becomes possible – a place where imagination becomes reality. With its perpetual growth and opportunities, Dubai is one of the most enthralling cities in the world. As the city continues to explore the unfathomable possibilities of the future, Dubai has become the birthplace for Mercedes-Benz Places | Binghatti – an icon born from tomorrow.",
+      "Defined as an epochal architectural symbol, the hyper-tower’s design supremacy is brought to life by the amalgamation of multiple design languages. The use of intricate strokes, mingled with the candescent pattern of the Mercedes-Benz three-pointed star create a form that lives and breathes the spirit of revolutionary architecture and craftsmanship.",
   },
 ];
 
