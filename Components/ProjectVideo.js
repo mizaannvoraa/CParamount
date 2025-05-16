@@ -40,7 +40,7 @@ export default function ProjectVideo() {
   }, []);
 
   return (
-    <div className="container mx-auto relative w-full px-4 lg:pb-8">
+    <div className="container md:ml-10 ml-5 mx-auto relative w-full px-4 lg:pb-8">
       {/* Text Section */}
       <div className="text-center">
         <h2 className="text-[#D2A23A] text-xl md:text-3xl font-extrabold">
