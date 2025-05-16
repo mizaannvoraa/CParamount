@@ -17,12 +17,12 @@ const projects = [
   {
     id: "B1",
     tab: "Sobha",
-    name: "Sobha Uaq downtown",
+    name: "Sobha Aquamont",
     location: "UAE (Umm Al QUAIN Downtown)",
     config: "1,2,3 Bedroom Residences",
     price: "1.11 Million AED",
     image: "/assets/S1.jpg",
-    rera: "n/A",
+    rera: "Pre Launch",
     description:
       "This word suggests a unique combination of waterfront peacefulness and mountain-inspired elevation (high-rise towers of the cluster), offering residents a beachfront lifestyle experience where they can enjoy both the whispers of oceanic waves and the grandeur of views from the high-rise buildings.",
   },
@@ -30,31 +30,31 @@ const projects = [
     id: "C1",
     tab: "Sobha",
     name: "Sobha Hartland II",
-    location: "Meydan (Bukadra),Dubai,UAE(SOBHA HARTLAND II)",
-    config: "1 , 2 & 3 BEDROOM APARTMENTS",
+    location: "Meydan, Dubai",
+    config: "1,2 & 3 Bedroom Apartments & Villas",
     price: "1.3 Million AED",
     image: "/assets/S2.jpg",
     rera: "3067",
     description:
-      "With over 1 million sq.ft of lush green spaces and villas set between an abundance of open greenery, the residency at sobha Hartland II allows you to experience nature's bounty in full glory.Walk along the streets adorned with bouldering walls and tree-lined walkways in grand forest landscapes and seasonal gardens.Take time out to peek at a dense panorama of the park accessible from every villa.",
+      "With over 1 million sq.ft of lush green spaces and villas set between an abundance of open greenery, the residency at sobha Hartland II allows you to experience nature's bounty in full glory.Walk along the streets adorned with bouldering walls and tree-lined walkways in grand forest landscapes and seasonal gardens.Take time out to peek at a dense panorama of the park accessible from every villa. Water front living with mansions , villas in same community , close to downtown , burj khalifa, dubai mall & dubai creek tower.",
   },
   {
     id: "C3",
     tab: "Sobha",
-    name: "Sobha jlt",
-    location: "UAE",
-    config: " 1, 1.5, 2 & 3 Bed",
-    price: "1,580,796 AED",
+    name: "Sobha Central",
+    location: "JLT, Dubai",
+    config: " 1,1.5,2 & 3 Bed",
+    price: "1.5 Million AED",
     image: "/assets/Sobha Jlt.jpg",
-    rera: "N/A",
+    rera: "Pre Launch",
     description:
-      "Pre launching Verde by Sobha. Embrace a new kind of living in Dubai's one of the most coveted districts-JLT, surrounded by crafted lakes, thriving residential complexes, buzzing high streets and more.With 66 stories, SOBHA Verde is one of the tallest residential skyscrapers oering picturesque views of the lush green meadows and emerald golf course. The uber-luxury homes are designed to suit the discerning tastes of the globe trotters with class-apart amenities.",
+      "Sheikh Zayed Road at your doorstep. Within walking distance of the Jebel Ali Metro Station. Fast access to Dubai Marina, AlKhail, Downtown, DIFC, and beyond. This is a location that moves with you—no detours,no delays. Whether it’s the morning rush,a late-night grocery run, or weekend plans across town, every direction feels effortless.All paths point to Sobha Central",
   },
   {
     id: "C4",
     tab: "Damac",
     name: "Damac island",
-    location: "Dubailand, near exit 36 on Emirates Road (E611)",
+    location: "Dubailand, Dubai",
     config: "4 & 5 Bedroom",
     price: "2.35 Million AED",
     image: "/assets/D1.jpg",
@@ -65,71 +65,70 @@ const projects = [
   {
     id: "C5",
     tab: "Damac",
-    name: "Maritime city Chelsea tower",
-    location: "Dubai Maritime City(DMC)",
+    name: "Damac Chelsea tower",
+    location: "Maritime City (DMC), Dubai",
     config: "1, 2 & 3 Bedrooms",
-    price: "2.17 Million",
+    price: "2.17 Million AED",
     image: "/assets/D2.jpg",
-    rera: "N/A",
+    rera: "3719",
     description:
-      "  The towers are a distillation of Chelsea’s very essence - their passion, pride as well as purpose and brought to life in the most luxuriously timeless way possible. Each of the towers blurs the line between contemporary urban and indulgent, waterfront resort-style living like never before.",
+      "The towers are a distillation of Chelsea’s very essence - their passion, pride as well as purpose and brought to life in the most luxuriously timeless way possible. Each of the towers blurs the line between contemporary urban and indulgent, waterfront resort-style living like never before.",
   },
   {
     id: "C6",
     tab: "Damac",
-    name: "Damac la Violeta 4",
-    location: "DAMAC Hills 2",
+    name: "Damac la Violet 4",
+    location: "DAMAC Hills 2,Dubai",
     config: "4 Bed Townhouse",
-    price: "2,515,000 AED",
+    price: "1.9 Million AED",
     image: "/assets/elixir.jpg",
-    rera: "N/A",
+    rera: "2354",
     description:
       "Violet 4 is part of a community where every moment becomes a lasting memory. Where you can attend a yoga class, go tanning and float down a lazy river all before lunch.Where your kids can paint the town red, and blue, catch a wave or two and play to their, and your heart's content. This is the community you never knew you needed, and more.",
   },
   {
     id: "C8",
     tab: "Emaar",
-    name: "Waterfront Towers",
-    location: "Mahim, Mumbai",
-    config: "2, 3 & 4 BHK FLATS",
-    price: "6.0 Cr.* (All Incl.)",
+    name: "Emaar Atlan",
+    location: "Dubai Creek Harbour, Dubai",
+    config: "1, 2 & 3 Bedroom Apartments",
+    price: "1.6 Million AED",
     image: "/assets/E1.jpg",
-    rera: "P51900098765",
+    rera: "Pre Launch",
     description:
-      "Waterfront Towers offers a luxurious lifestyle with stunning views of the Arabian Sea, located in the prime area of Mahim.",
+      "Life at Altan is a blissful getaway, where the creek shimmers,the city skyline inspires, and nature invites you to unwind.Glide through calm waters, stroll through vibrant promenades,and find peace in lush gardens. At Altan, home is more thanjust a place—it’s an experience.",
   },
   {
     id: "C9",
     tab: "Emaar",
-    name: "Waterfront Towers",
-    location: "Mahim, Mumbai",
-    config: "2, 3 & 4 BHK FLATS",
-    price: "6.0 Cr.* (All Incl.)",
+    name: "Emaar Rivera The Valley",
+    location: "The Valley,Dubai",
+    config: " 4 Bedroom Townhouse",
+    price: "4.5 Million AED",
     image: "/assets/E2.jpg",
-    rera: "P51900098765",
+    rera: "3174",
     description:
-      "Waterfront Towers offers a luxurious lifestyle with stunning views of the Arabian Sea, located in the prime area of Mahim.",
+      "Welcome to Rivera, where active and sustainable living come together. Surrounded byparks, beautifully landscaped flower gardens, jogging tracks, and all the amenities of The Valley West at your doorstep, every element brings the outdoors closer.",
   },
-  // {
-  //   id: "C10",
-  //   tab: "Emaar",
-  //   name: "Waterfront Towers",
-  //   location: "Mahim, Mumbai",
-  //   config: "2, 3 & 4 BHK FLATS",
-  //   price: "6.0 Cr.* (All Incl.)",
-  //   image: "/assets/elixir.jpg",
-  //   rera: "P51900098765",
-  //   description:
-  //     "Waterfront Towers offers a luxurious lifestyle with stunning views of the Arabian Sea, located in the prime area of Mahim.",
-  // },
+  {
+    id: "C10",
+    tab: "Emaar",
+    name: " Emaar Greenspoint",
+    location: "Emaar South,Dubai",
+    config: "3 & 4 Bedroom Apartments",
+    price: "3.5 Million AED",
+    image: "/assets/elixir.jpg",
+    rera: "3558",
+    description:
+      "Emaar South is a dynamic family-orientated community set amid lush landscapes and a championship golf course. Designed for modern living, it features pedestrian-friendly paths, top schools, retail, healthcare,and luxury hotels—all just steps away. With elegant villas, Homes,and world-class amenities, Emaar South offers an energetic,convenience-focused lifestyle where families can thrive, grow and explore endless possibilities.",
+  },
   {
     id: "C11",
     tab: "Binghatti",
-    name: "Binghatti hillsview (science park arjan)",
-    location:
-      "Al Barsha South 2,near Al Khail Road (Opp emaar Dubai Hills estate)",
+    name: "Binghatti Hills View ",
+    location: "Arjan, Dubai",
     config: "1 & 2 Bedroom Apartments",
-    price: "0.75 Million AED.",
+    price: "750K",
     image: "/assets/B1.jpg",
     rera: "3321",
     description:
@@ -139,8 +138,8 @@ const projects = [
     id: "C12",
     tab: "Binghatti",
     name: "Binghatti Haven",
-    location: "Dubai Sports City",
-    config: "1 & 2  Bedroom",
+    location: "Sports City, Dubai",
+    config: "1 & 2 Bedroom",
     price: "1.2 Million AED",
     image: "/assets/B2.jpg",
     rera: "3442",
@@ -150,26 +149,26 @@ const projects = [
   {
     id: "C13",
     tab: "Binghatti",
-    name: "N/A",
-    location: "N/A",
-    config: "N/A",
-    price: "N/A",
+    name: "BINGHATTI AQUARISE",
+    location: "Business Bay,Dubai",
+    config: "1, 2 & 3 Bedrooms",
+    price: "1 Million AED",
     image: "/assets/B3.jpg",
-    rera: "N/a",
+    rera: "3585",
     description:
-      "N/A",
+      "Birthed from a tranquil dream of glass and light, Aquarise emerges as an ode to gentle living in the heart of Business Bay. Its graceful façade shimmers beneath and invites you into a realm where time slows, and each breath resonates with possibility. Step inside and discover a serene haven, poised between urban vibrancy and the poetic cadence of flowing water.",
   },
   {
     id: "C14",
     tab: "Binghatti",
-    name: "N/A",
-    location: "N/A",
-    config: "N/A",
-    price: "N/A",
+    name: "Binghatti Mercedes-Benz Places ",
+    location: "Downtown,Dubai",
+    config: "2, 3 & 4 Bed",
+    price: "10 Million AED",
     image: "/assets/B4.jpg",
-    rera: "N/A",
+    rera: "2545",
     description:
-      "Waterfront Towers offers a luxurious lifestyle with stunning views of the Arabian Sea, located in the prime area of Mahim.",
+      "Welcome to Dubai A captivating city, where all becomes possible – a place where imagination becomes reality. With its perpetual growth and opportunities, Dubai is one of the most enthralling cities in the world. As the city continues to explore the unfathomable possibilities of the future, Dubai has become the birthplace for Mercedes-Benz Places | Binghatti – an icon born from tomorrow.",
   },
 ];
 
@@ -281,21 +280,12 @@ export default function TabSection() {
                       >
                         {isExpanded[proj.id] ? "Read less" : "Read more"}
                       </button>
-
                       <div className="pt-4 text-gray-700 ">
                         <div className="flex flex-col gap-y-3">
-                          {proj.rera ? (
-                            <div className="border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1">
-                              <span className="font-medium">Rera No.</span>
-                              <span className="text-gray-600">{proj.rera}</span>
-                            </div>
-                          ) : (
-                            <div className="invisible border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1">
-                              <span className="font-medium">.</span>
-                              <span className="text-gray-600">.</span>
-                            </div>
-                          )}
-
+                          <div className="border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1">
+                            <span className="font-medium">Rera No.</span>
+                            <span className="text-gray-600">{proj.rera}</span>
+                          </div>
                           <div className="border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1">
                             <span className="font-medium">Location</span>
                             <span className="text-gray-600 text-right">
