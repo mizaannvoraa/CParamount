@@ -22,7 +22,7 @@ const Footer = () => {
           </div>
           <div className="flex items-center gap-3 justify-start">
             <IoCall className="text-lg" />
-            <p>+971 58 593 5111</p>
+            <p>+971 56 531 1811</p>
           </div>
         </div>
 

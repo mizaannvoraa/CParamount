@@ -1,17 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules"; // Added Autoplay import
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import "swiper/css/autoplay"; // Added CSS for autoplay
+import "swiper/css/autoplay";
 import Image from "next/image";
 import ContactModalForm from "./Modal";
 import "animate.css";
 import AnimateCard from "./AnimateCard";
 
+// Tabs
 const tabs = ["All", "Sobha", "Damac", "Emaar", "Binghatti"];
 const projects = [
   {
@@ -175,9 +176,9 @@ const projects = [
 export default function TabSection() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("All");
-
-  /** @type {Object.<string, boolean>} */
+  const [selectedProjectName, setSelectedProjectName] = useState("");
   const [isExpanded, setIsExpanded] = useState({});
+  const swiperRef = useRef(null);
 
   const filteredProjects =
     activeTab === "All"
@@ -191,7 +192,17 @@ export default function TabSection() {
     }));
   };
 
-  // Make sure we have enough slides to enable loop
+  const handleOpenModal = (projectName) => {
+    swiperRef.current?.autoplay?.stop();
+    setSelectedProjectName(projectName);
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    swiperRef.current?.autoplay?.start();
+    setIsOpen(false);
+  };
+
   const shouldEnableLoop = filteredProjects.length > 3;
 
   return (
@@ -209,7 +220,7 @@ export default function TabSection() {
 
         {/* Tabs */}
         <AnimateCard animationClass="animate__slideInDown">
-          <div className="flex flex-wrap space-x-4 mb-6 mt-8 items-center justify-center ">
+          <div className="flex flex-wrap space-x-4 mb-6 mt-8 items-center justify-center">
             {tabs.map((tab) => (
               <button
                 key={tab}
@@ -225,7 +236,8 @@ export default function TabSection() {
             ))}
           </div>
         </AnimateCard>
-        {/* Slider */}
+
+        {/* Swiper */}
         <div className="relative">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
@@ -233,8 +245,11 @@ export default function TabSection() {
             slidesPerView={1}
             loop={shouldEnableLoop}
             autoplay={{
-              delay: 2000,
+              delay: 3000,
               disableOnInteraction: false,
+            }}
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
             }}
             navigation={{
               nextEl: ".custom-swiper-button-next",
@@ -264,11 +279,11 @@ export default function TabSection() {
                       className="w-full h-48 object-cover"
                     />
                     <div className="max-w-4xl mx-auto bg-white border border-gray-300 p-2 shadow-sm text-sm">
-                      <h3 className="text-gray-800 text-xs font-extralight mb-2 border-b border-[#ccc]">
+                      <h3 className="text-gray-900 text-[14px] font-black pb-1 mb-2 border-b border-[#ccc]">
                         {proj.name}
                       </h3>
 
-                      <p className="text-gray-800 text-[14px] font-extralight leading-relaxed">
+                      <p className="text-gray-900 text-[14px] font-extralight leading-relaxed">
                         {isExpanded[proj.id]
                           ? proj.description
                           : `${proj.description.slice(0, 130)}...`}
@@ -280,44 +295,39 @@ export default function TabSection() {
                       >
                         {isExpanded[proj.id] ? "Read less" : "Read more"}
                       </button>
-                      <div className="pt-4 text-gray-700 ">
+
+                      <div className="pt-4 text-gray-900">
                         <div className="flex flex-col gap-y-3">
-                          <div className="border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1">
-                            <span className="font-medium">Rera No.</span>
-                            <span className="text-gray-600">{proj.rera}</span>
-                          </div>
-                          <div className="border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1">
-                            <span className="font-medium">Location</span>
-                            <span className="text-gray-600 text-right">
-                              {proj.location}
-                            </span>
-                          </div>
-                          <div className="border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1">
-                            <span className="font-medium">Configuration</span>
-                            <span className="text-gray-600">{proj.config}</span>
-                          </div>
-                          <div className="border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1">
-                            <span className="font-medium">Starting Price</span>
-                            <span className="text-gray-600">{proj.price}</span>
-                          </div>
+                          {[
+                            { label: "Rera No.", value: proj.rera },
+                            { label: "Location", value: proj.location },
+                            { label: "Configuration", value: proj.config },
+                            { label: "Starting Price", value: proj.price },
+                          ].map(({ label, value }) => (
+                            <div
+                              key={label}
+                              className="border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1"
+                            >
+                              <span className="font-medium text-gray-900">{label}</span>
+                              <span className="text-gray-900 text-right">{value}</span>
+                            </div>
+                          ))}
                         </div>
 
                         <div className="flex flex-col gap-3 mt-3">
-                          <div className="flex border-b text-xs font-normal border-gray-300 items-center justify-between">
+                          <div className="flex border-b text-xs font-normal text-gray-900 border-gray-300 items-center justify-between">
                             For more details
                             <button
-                              onClick={() => setIsOpen(true)}
+                              onClick={() => handleOpenModal(proj.name)}
                               className="bg-[#D09E32] text-xs mb-1 text-white px-4 py-[6px] cursor-pointer hover:bg-yellow-700"
                             >
                               Click Here
                             </button>
                           </div>
                           <div className="flex items-center justify-between font-semibold">
-                            <span className="text-black text-xs">
-                              Download Brochure
-                            </span>
+                            <span className="text-black text-xs">Download Brochure</span>
                             <button
-                              onClick={() => setIsOpen(true)}
+                              onClick={() => handleOpenModal(proj.name)}
                               className="bg-[#D09E32] text-xs mb-1 text-white px-4 py-[6px] cursor-pointer hover:bg-yellow-700"
                             >
                               Click Here
@@ -332,13 +342,18 @@ export default function TabSection() {
             ))}
           </Swiper>
 
-          {/* Custom Pagination */}
           <div className="w-full flex items-center gap-1 ml-4 justify-center mt-4">
             <div className="custom-swiper-pagination"></div>
           </div>
         </div>
       </div>
-      {isOpen && <ContactModalForm onClose={() => setIsOpen(false)} />}
+
+      {isOpen && (
+        <ContactModalForm
+          onClose={handleCloseModal}
+          selectedProject={selectedProjectName}
+        />
+      )}
     </>
   );
 }

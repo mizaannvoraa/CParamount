@@ -12,6 +12,7 @@ import Slider from "@/Components/Slider";
 import TabSection from "@/Components/TabSection";
 
 import { Poppins } from 'next/font/google';
+import EnquireNowButton from "@/Components/EnquireNowButton";
 
 const poppins = Poppins({
   weight: ['300', '400', '600'],
@@ -36,6 +37,7 @@ export default function Home() {
         <ProjectVideo />
         <ContactForm />
       </div>
+      <EnquireNowButton/>
     </>
   );
 }

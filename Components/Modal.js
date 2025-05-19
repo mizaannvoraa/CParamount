@@ -5,17 +5,29 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import { useRouter } from "next/navigation";
 
-export default function ContactModalForm({ onClose }) {
+export default function ContactModalForm({ onClose, selectedProject }) {
   const [urlParams, setUrlParams] = useState({
     utm_ad: "",
     utm_placement: "",
     gclid: "",
     fbclid: "",
+    utm_source: "",
+    utm_campaign: "",
+    utm_keywords: "",
   });
 
+  const router = useRouter();
+  const [shouldRedirect, setShouldRedirect] = useState(false);
   const [status, setStatus] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (shouldRedirect) {
+      router.push("/thank-you");
+    }
+  }, [shouldRedirect, router]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -25,14 +37,29 @@ export default function ContactModalForm({ onClose }) {
         utm_placement: query.get("utm_placement") || "",
         gclid: query.get("gclid") || "",
         fbclid: query.get("fbclid") || "",
+        utm_source: query.get("utm_source") || "",
+        utm_campaign: query.get("utm_campaign") || "",
+        utm_keywords: query.get("utm_keywords") || "",
       };
       setUrlParams(params);
 
-      Object.entries(params).forEach(([key, value]) => {
-        if (value) localStorage.setItem(key, value);
-      });
+      Object.entries(params).forEach(([key, value]) =>
+        localStorage.setItem(key, value)
+      );
     }
   }, []);
+
+  useEffect(() => {
+    if (status.includes("success")) {
+      const timer = setTimeout(() => setStatus(""), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [status]);
+
+  const getParam = (key) =>
+    urlParams[key] ||
+    (typeof window !== "undefined" && localStorage.getItem(key)) ||
+    "";
 
   const formik = useFormik({
     initialValues: {
@@ -49,32 +76,17 @@ export default function ContactModalForm({ onClose }) {
     }),
     onSubmit: async (values, { resetForm }) => {
       setIsSubmitting(true);
-      setStatus("Submitting...");
-
-      const utm_ad =
-        urlParams.utm_ad ||
-        (typeof window !== "undefined" && localStorage.getItem("utm_ad")) ||
-        "";
-      const utm_placement =
-        urlParams.utm_placement ||
-        (typeof window !== "undefined" &&
-          localStorage.getItem("utm_placement")) ||
-        "";
-      const gclid =
-        urlParams.gclid ||
-        (typeof window !== "undefined" && localStorage.getItem("gclid")) ||
-        "";
-      const fbclid =
-        urlParams.fbclid ||
-        (typeof window !== "undefined" && localStorage.getItem("fbclid")) ||
-        "";
 
       const formData = {
         ...values,
-        utm_ad,
-        utm_placement,
-        gclid,
-        fbclid,
+        utm_ad: getParam("utm_ad"),
+        utm_placement: getParam("utm_placement"),
+        gclid: getParam("gclid"),
+        fbclid: getParam("fbclid"),
+        utm_source: getParam("utm_source"),
+        utm_campaign: getParam("utm_campaign"),
+        utm_keywords: getParam("utm_keywords"),
+        project: selectedProject || "",
       };
 
       const body = new URLSearchParams();
@@ -83,8 +95,9 @@ export default function ContactModalForm({ onClose }) {
       });
 
       try {
-        const response = await fetch(
-          "https://script.google.com/macros/s/AKfycbxACDHcXZaxzcaWH_0-JMkKPIChjJZA-BMA6ozCvSQqAjFa7mLCfVegeEWVP2q756RZsQ/exec",
+        // Google Sheets Submit
+        await fetch(
+          "https://script.google.com/macros/s/AKfycbwTYqeq_iHIsazYotEm-C_fxnN5CI8spaw-gPmfuhjWvZdtXGMJ6HmUKfzgCRdH0cvD-Q/exec",
           {
             method: "POST",
             mode: "no-cors",
@@ -95,9 +108,38 @@ export default function ContactModalForm({ onClose }) {
           }
         );
 
-        setStatus("Form submitted successfully!");
-        resetForm();
+        // External API Submit
+        const response = await fetch(
+          "https://api.cparamount.com/leads/web-hook/campaigns?access_token=YUFZVDMSFFQKNDYWZKRLYBDIA",
+          {
+            method: "POST",
+            headers: {
+              Accept: "*/*",
+              "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: values.name,
+              mobile: values.phone,
+              email: values.email,
+              source: getParam("utm_source") || "Google",
+              campaign: getParam("utm_campaign") || "",
+              notes: `Project: ${selectedProject || "N/A"}
+UTM Source: ${getParam("utm_source")}
+UTM Campaign: ${getParam("utm_campaign")}
+UTM Ad: ${getParam("utm_ad")}
+UTM Placement: ${getParam("utm_placement")}
+GCLID: ${getParam("gclid")}
+FBCLID: ${getParam("fbclid")}
+UTM Keywords: ${getParam("utm_keywords")}`,
 
+            }),
+          }
+        );
+
+        const data = await response.json();
+        resetForm();
+        setShouldRedirect(true);
         setTimeout(() => {
           onClose();
         }, 2000);
@@ -113,7 +155,6 @@ export default function ContactModalForm({ onClose }) {
   return (
     <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
       <div className="relative bg-white rounded-[4px] w-full max-w-2xl p-6 shadow-lg">
-        {/* Close Button */}
         <button
           type="button"
           onClick={onClose}
