@@ -42,7 +42,7 @@ export default function Slider() {
         >
           {getExpandedSlides(desktopSlides).map((item, idx) => (
             <SwiperSlide key={`desktop-${idx}`}>
-              <div className="relative w-full lg:h-[87vh]">
+              <div className="relative w-full lg:h-[100vh] lg:-mt-[30px]">
                 <Image
                   src={item.src}
                   alt={item.alt}

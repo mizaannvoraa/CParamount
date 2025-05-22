@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { IoMdCall } from "react-icons/io";
 import EnquireModal from "./EnquireModal";
 
-const EnquireNowButton = () => {
+const EnquireNowButton = ({countryFromURL = "ae" }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -14,7 +14,7 @@ const EnquireNowButton = () => {
   return (
     <>
       {/* Modal */}
-      <EnquireModal isOpen={isModalOpen} onClose={closeModal} />
+      <EnquireModal countryFromURL={countryFromURL} isOpen={isModalOpen} onClose={closeModal} />
 
       {/* Desktop Button */}
       <button

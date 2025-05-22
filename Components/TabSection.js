@@ -121,7 +121,7 @@ const projects = [
     image: "/assets/EmaarGreen.jpg",
     rera: "3558",
     description:
-    "Greenspoint isn’t just a home—it’s a vibrant community built to keep you moving. Glide through dedicated cycling trails, jog beneath the shade of lush trees, or unwind with your family in the neighbourhood parks. Here, every path leads to a life full of energy and vitality.",
+      "Greenspoint isn’t just a home—it’s a vibrant community built to keep you moving. Glide through dedicated cycling trails, jog beneath the shade of lush trees, or unwind with your family in the neighbourhood parks. Here, every path leads to a life full of energy and vitality.",
   },
   {
     id: "C11",
@@ -173,7 +173,7 @@ const projects = [
   },
 ];
 
-export default function TabSection() {
+export default function TabSection({ countryFromURL = "ae" }) {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("All");
   const [selectedProjectName, setSelectedProjectName] = useState("");
@@ -268,7 +268,12 @@ export default function TabSection() {
             className="mySwiper"
           >
             {filteredProjects.map((proj) => (
-              <SwiperSlide key={proj.id} className="!bg-white">
+              <SwiperSlide
+                key={proj.id}
+                className="!bg-white"
+                onMouseEnter={() => swiperRef.current?.autoplay?.stop()}
+                onMouseLeave={() => swiperRef.current?.autoplay?.start()}
+              >
                 <AnimateCard animationClass="animate__zoomIn">
                   <div className="bg-white shadow-lg rounded-lg overflow-hidden my-2">
                     <Image
@@ -308,8 +313,12 @@ export default function TabSection() {
                               key={label}
                               className="border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1"
                             >
-                              <span className="font-medium text-gray-900">{label}</span>
-                              <span className="text-gray-900 text-right">{value}</span>
+                              <span className="font-medium text-gray-900">
+                                {label}
+                              </span>
+                              <span className="text-gray-900 text-right">
+                                {value}
+                              </span>
                             </div>
                           ))}
                         </div>
@@ -325,7 +334,9 @@ export default function TabSection() {
                             </button>
                           </div>
                           <div className="flex items-center justify-between font-semibold">
-                            <span className="text-black text-xs">Download Brochure</span>
+                            <span className="text-black text-xs">
+                              Download Brochure
+                            </span>
                             <button
                               onClick={() => handleOpenModal(proj.name)}
                               className="bg-[#D09E32] text-xs mb-1 text-white px-4 py-[6px] cursor-pointer hover:bg-yellow-700"
@@ -350,6 +361,7 @@ export default function TabSection() {
 
       {isOpen && (
         <ContactModalForm
+          countryFromURL={countryFromURL}
           onClose={handleCloseModal}
           selectedProject={selectedProjectName}
         />

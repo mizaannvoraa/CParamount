@@ -6,11 +6,11 @@ import * as Yup from "yup";
 import PhoneInput from "react-phone-input-2";
 import "animate.css";
 import "react-phone-input-2/lib/style.css";
-import AnimateCard from "./AnimateCard";
+import AnimateCard from "@/Components/AnimateCard";
 import Select from "react-select";
 import { useRouter } from "next/navigation";
 
-export default function ContactForm() {
+export default function ContactForm({ countryFromURL = "ae" }) {
   const [urlParams, setUrlParams] = useState({
     utm_ad: "",
     utm_placement: "",
@@ -27,33 +27,33 @@ export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   useEffect(() => {
     if (shouldRedirect) {
-      router.push("/thank-you"); // ✅ Works with useRouter from next/navigation
+      router.push("/thank-you");
     }
   }, [shouldRedirect, router]);
 
+  const countryCodeMap = {
+    canada: "ca",
+    usa: "us",
+    india: "in",
+    dubai: "ae",
+    uae: "ae",
+    uk: "gb",
+  };
+
+  const getPhoneCountryCode = (country) => {
+    return countryCodeMap[country?.toLowerCase()] || "ae"; // Default to 'ae' (UAE)
+  };
+  const [phoneCountry, setPhoneCountry] = useState("ae");
+
+  useEffect(() => {
+    setPhoneCountry(getPhoneCountryCode(countryFromURL));
+  }, [countryFromURL]);
+
   const projectOptions = [
-    { value: "Project A", label: "Sobha Aquamont - Umm Al Quain Downtown" },
-    { value: "Project B", label: "Sobha Hartland II - Meydan, Dubai" },
-    { value: "Project C", label: "Binghatti Hills View - Arjan, Dubai" },
-    { value: "Project D", label: "Binghatti Haven - Sports City, Dubai" },
-    { value: "Project E", label: "Damac Island - Dubailand, Dubai" },
-    { value: "Project F", label: "Sobha Central - JLT,Dubai" },
-    {
-      value: "Project G",
-      label: "Damac Chelsea tower -Maritime City (DMC),Dubai",
-    },
-    { value: "Project H", label: "Damac la Violet 4 - DAMAC Hills 2, Dubai" },
-    { value: "Project I", label: "BINGHATTI AQUARISE - Business Bay, Dubai" },
-    { value: "Project J", label: "Emaar Atlan - Dubai Creek Harbour" },
-    {
-      value: "Project K",
-      label: "Emaar Rivera The Valley - The Valley, Dubai",
-    },
-    { value: "Project L", label: "Emaar Greenspoint - Emaar South, Dubai" },
-    {
-      value: "Project M",
-      label: "Binghatti Mercedes-Benz Places - Downtown, Dubai ",
-    },
+    { value: "Project A", label: "Sobha" },
+    { value: "Project B", label: "Damac" },
+    { value: "Project C", label: "Emaar" },
+    { value: "Project D", label: "Binghatti" },
   ];
 
   useEffect(() => {
@@ -238,7 +238,7 @@ UTM Keywords: ${utm_keywords}`,
 
             <div className="w-full">
               <PhoneInput
-                country={"ae"}
+                country={phoneCountry}
                 value={formik.values.phone}
                 onChange={(phone) => formik.setFieldValue("phone", phone)}
                 onBlur={formik.handleBlur}
@@ -252,6 +252,7 @@ UTM Keywords: ${utm_keywords}`,
                 dropdownClass="!rounded-md"
                 placeholder="Phone*"
               />
+
               {formik.touched.phone && formik.errors.phone && (
                 <div className="text-red-500 text-sm mt-1 ml-5">
                   {formik.errors.phone}
@@ -283,7 +284,7 @@ UTM Keywords: ${utm_keywords}`,
                 value={formik.values.project}
                 onChange={(option) => formik.setFieldValue("project", option)}
                 onBlur={() => formik.setFieldTouched("project", true)}
-                placeholder="Select Project*"
+                placeholder="Select Developer*"
                 className="w-full"
                 styles={{
                   control: (base, state) => ({

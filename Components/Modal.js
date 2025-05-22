@@ -7,7 +7,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import { useRouter } from "next/navigation";
 
-export default function ContactModalForm({ onClose, selectedProject }) {
+export default function ContactModalForm({ onClose, selectedProject,countryFromURL = "ae"  }) {
   const [urlParams, setUrlParams] = useState({
     utm_ad: "",
     utm_placement: "",
@@ -29,6 +29,23 @@ export default function ContactModalForm({ onClose, selectedProject }) {
     }
   }, [shouldRedirect, router]);
 
+const countryCodeMap = {
+  canada: "ca",
+  usa: "us",
+  india: "in",
+  dubai: "ae",
+  uae: "ae",
+  uk: "gb",
+};
+
+const getPhoneCountryCode = (country) => {
+  return countryCodeMap[country?.toLowerCase()] || "ae"; // Default to 'ae' (UAE)
+};
+const [phoneCountry, setPhoneCountry] = useState("ae");
+
+useEffect(() => {
+  setPhoneCountry(getPhoneCountryCode(countryFromURL));
+}, [countryFromURL]);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const query = new URLSearchParams(window.location.search);
@@ -109,22 +126,13 @@ export default function ContactModalForm({ onClose, selectedProject }) {
         );
 
         // External API Submit
-        const response = await fetch(
-          "https://api.cparamount.com/leads/web-hook/campaigns?access_token=YUFZVDMSFFQKNDYWZKRLYBDIA",
-          {
-            method: "POST",
-            headers: {
-              Accept: "*/*",
-              "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              name: values.name,
-              mobile: values.phone,
-              email: values.email,
-              source: getParam("utm_source") || "Google",
-              campaign: getParam("utm_campaign") || "",
-              notes: `Project: ${selectedProject || "N/A"}
+     const payload = {
+  name: values.name,
+  mobile: values.phone,
+  email: values.email,
+  source: getParam("utm_source") || "Google",
+  campaign: getParam("utm_campaign") || "",
+  notes: `Project: ${selectedProject || "N/A"}
 UTM Source: ${getParam("utm_source")}
 UTM Campaign: ${getParam("utm_campaign")}
 UTM Ad: ${getParam("utm_ad")}
@@ -132,12 +140,27 @@ UTM Placement: ${getParam("utm_placement")}
 GCLID: ${getParam("gclid")}
 FBCLID: ${getParam("fbclid")}
 UTM Keywords: ${getParam("utm_keywords")}`,
+};
 
-            }),
-          }
-        );
+console.log("Payload being sent:", payload); // Log the payload
+
+const response = await fetch(
+  "https://api.cparamount.com/leads/web-hook/campaigns?access_token=YUFZVDMSFFQKNDYWZKRLYBDIA",
+  {
+    method: "POST",
+    headers: {
+      Accept: "*/*",
+      "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+      "Content-Type": "application/json",
+      Authorization: "Bearer YUFZVDMSFFQKNDYWZKRLYBDIA",
+    },
+    body: JSON.stringify(payload),
+  }
+);
+
 
         const data = await response.json();
+        console.log(data)
         resetForm();
         setShouldRedirect(true);
         setTimeout(() => {
@@ -201,9 +224,9 @@ UTM Keywords: ${getParam("utm_keywords")}`,
 
           <div className="w-full">
             <PhoneInput
-              country={"ae"}
-              value={formik.values.phone}
-              onChange={(phone) => formik.setFieldValue("phone", phone)}
+           country={phoneCountry}
+  value={formik.values.phone}
+  onChange={(phone) => formik.setFieldValue("phone", phone)}
               onBlur={() => formik.setFieldTouched("phone", true)}
               inputProps={{
                 name: "phone",

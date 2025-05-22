@@ -9,7 +9,7 @@ import "react-phone-input-2/lib/style.css";
 import "animate.css";
 import { useRouter } from "next/navigation";
 
-export default function EnquireModal({ isOpen, onClose }) {
+export default function EnquireModal({ isOpen, onClose,countryFromURL = "ae" }) {
   const [urlParams, setUrlParams] = useState({
     utm_ad: "",
     utm_placement: "",
@@ -28,29 +28,29 @@ export default function EnquireModal({ isOpen, onClose }) {
       router.push("/thank-you");
     }
   }, [shouldRedirect, router]);
+
+  const countryCodeMap = {
+    canada: "ca",
+    usa: "us",
+    india: "in",
+    dubai: "ae",
+    uae: "ae",
+    uk: "gb",
+  };
+  
+  const getPhoneCountryCode = (country) => {
+    return countryCodeMap[country?.toLowerCase()] || "ae"; // Default to 'ae' (UAE)
+  };
+  const [phoneCountry, setPhoneCountry] = useState("ae");
+  
+  useEffect(() => {
+    setPhoneCountry(getPhoneCountryCode(countryFromURL));
+  }, [countryFromURL]);
   const projectOptions = [
-    { value: "Project A", label: "Sobha Aquamont - Umm Al Quain Downtown" },
-    { value: "Project B", label: "Sobha Hartland II - Meydan, Dubai" },
-    { value: "Project C", label: "Binghatti Hills View - Arjan, Dubai" },
-    { value: "Project D", label: "Binghatti Haven - Sports City, Dubai" },
-    { value: "Project E", label: "Damac Island - Dubailand, Dubai" },
-    { value: "Project F", label: "Sobha Central - JLT,Dubai" },
-    {
-      value: "Project G",
-      label: "Damac Chelsea tower -Maritime City (DMC),Dubai",
-    },
-    { value: "Project H", label: "Damac la Violet 4 - DAMAC Hills 2, Dubai" },
-    { value: "Project I", label: "BINGHATTI AQUARISE - Business Bay, Dubai" },
-    { value: "Project J", label: "Emaar Atlan - Dubai Creek Harbour" },
-    {
-      value: "Project K",
-      label: "Emaar Rivera The Valley - The Valley, Dubai",
-    },
-    { value: "Project L", label: "Emaar Greenspoint - Emaar South, Dubai" },
-    {
-      value: "Project M",
-      label: "Binghatti Mercedes-Benz Places - Downtown, Dubai ",
-    },
+ { value: "Project A", label: "Sobha" },
+    { value: "Project B", label: "Damac" },
+    { value: "Project C", label: "Emaar" },
+    { value: "Project D", label: "Binghatti" },
   ];
 
   useEffect(() => {
@@ -166,6 +166,7 @@ UTM Keywords: ${utm.utm_keywords}`,
         );
 
         const data = await response.json();
+        
         setShouldRedirect(true);
         resetForm();
         setFieldValue("project", null);
@@ -187,7 +188,7 @@ UTM Keywords: ${utm.utm_keywords}`,
           <h2 className="text-xl font-bold text-[#D2A23A]">Enquire</h2>
           <button
             onClick={onClose}
-            className="text-gray-600 hover:text-red-500 text-xl font-bold"
+            className="text-gray-600 hover:text-red-500 cursor-pointer text-xl font-bold"
           >
             &times;
           </button>
@@ -235,9 +236,9 @@ UTM Keywords: ${utm.utm_keywords}`,
 
             <div className="flex flex-col">
               <PhoneInput
-                country={"ae"}
-                value={formik.values.phone}
-                onChange={(phone) => formik.setFieldValue("phone", phone)}
+              country={phoneCountry}
+  value={formik.values.phone}
+  onChange={(phone) => formik.setFieldValue("phone", phone)}
                 onBlur={formik.handleBlur}
                 inputProps={{
                   name: "phone",
@@ -280,14 +281,14 @@ UTM Keywords: ${utm.utm_keywords}`,
                 value={formik.values.project}
                 onChange={(option) => formik.setFieldValue("project", option)}
                 onBlur={() => formik.setFieldTouched("project", true)}
-                placeholder="Select Project*"
+                placeholder="Select Developer*"
                 className="w-full"
                 styles={{
                   control: (base, state) => ({
                     ...base,
                     backgroundColor: formik.values.project
                       ? "#E6F0FF"
-                      : "transparent", // Apply bg if project selected
+                      : "transparent", 
                     borderRadius: "9999px",
                     borderWidth: "1px",
                     borderColor: state.isFocused ? "#D2A23A" : "#D1D5DB",
