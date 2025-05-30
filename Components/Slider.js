@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
 export default function Slider() {
   // Use state to store slides to ensure React doesn't re-render and break Swiper
   const [desktopSlides] = useState([
-    { src: "/assets/SobhaWebBan1.webp", alt: "Slide 1" },
-    { src: "/assets/SobhaWebBan2.webp", alt: "Slide 2" },
+    { src: "/assets/Sobha Central Web banner.jpg", alt: "Slide 1" },
+    { src: "/assets/Sobha Central Web Footer banner.jpg", alt: "Slide 2" },
   ]);
 
   const [mobileSlides] = useState([
