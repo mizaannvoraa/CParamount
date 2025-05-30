@@ -37,11 +37,6 @@ const Footer = () => {
             </h2>
             <ul className="space-y-2 flex justify-start flex-col">
               <li>
-                <a href="/" className="hover:underline">
-                  Home
-                </a>
-              </li>
-              <li>
                 <a href="#overview" className="hover:underline">
                   Overview
                 </a>
@@ -96,6 +91,13 @@ const Footer = () => {
       </Link>
       <span className="hidden sm:inline-block border-l h-4 border-gray-500"></span>
       <p className="tracking-widest font-medium">© 2025 ALL RIGHTS RESERVED</p>
+      <span className="hidden sm:inline-block border-l h-4 border-gray-500"></span>
+       <Link
+        href="/terms-conditions"
+        className="hover:underline tracking-widest font-medium uppercase "
+      >
+        Terms & Conditions
+      </Link>
     </div>
     </div>
   );

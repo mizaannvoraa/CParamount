@@ -27,7 +27,7 @@ export default function ContactForm({ countryFromURL = "ae" }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   useEffect(() => {
     if (shouldRedirect) {
-      router.push("/thank-you");
+      router.replace("/thank-you");
     }
   }, [shouldRedirect, router]);
 
@@ -86,7 +86,7 @@ export default function ContactForm({ countryFromURL = "ae" }) {
   const formik = useFormik({
     initialValues: {
       name: "",
-      project: { value: 'sobha', label: 'Sobha' },
+      project: { value: "sobha", label: "Sobha" },
       phone: "",
       email: "",
     },
