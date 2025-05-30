@@ -9,9 +9,9 @@ const Overview = () => {
     <div className="bg-[#F7F7F7]" id="overview">
       <div className="container mx-auto px-1 py-6 lg:py-12 ">
         <div className="text-center">
-          <h2 className="text-[#D2A23A] mt-4 text-2xl md:text-3xl font-extrabold">
-            Overview
-          </h2>
+          <h1 className="text-[#D2A23A] mt-4 mb-[6px] text-2xl md:text-3xl font-extrabold">
+            Discover Prime Real Estate Opportunities in Dubai
+          </h1>
           <div className="mx-auto mt-[1px] w-16 lg:w-29 h-1 bg-black rounded"></div>
         </div>
 
@@ -24,23 +24,10 @@ const Overview = () => {
 
   <div className="w-full lg:w-1/2 px-2">
     <AnimateCard animationClass="animate__backInRight">
-      <div className="flex flex-col text-[#414141] items-start gap-3">
-        <p>
-          We, Classic Paramount Real Estate, are a Dubai-based real estate
-          company specializing in rent & sell, commercial, off-plan, and
-          property management.
-        </p>
-        <p className="text-xl font-bold">Vision</p>
-        <p>
-          When thinking of an ideal life, we always start with the place
-          that we call home not just a mere house.
-        </p>
-        <p className="text-xl font-bold font-sans">Mission</p>
-        <p>
-          We are guided by a moral compass that steers us towards superior
-          customer service. We remain anchored in the principles that have
-          been the compass of our journey.
-        </p>
+      <div className="flex tracking-[1px] text-[17px] text-[#414141] items-start ">
+      <p>Welcome to New Projects Dubai, your premier destination for exploring the latest Real Estate Dubai offerings. Whether  you&apos;re seeking luxurious Villas in Dubai or contemporary Homes in Dubai, our platform provides comprehensive listings and insights to help you find your dream property.
+</p>
+
       </div>
     </AnimateCard>
   </div>

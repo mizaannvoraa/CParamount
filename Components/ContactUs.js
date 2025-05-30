@@ -86,7 +86,7 @@ export default function ContactForm({ countryFromURL = "ae" }) {
   const formik = useFormik({
     initialValues: {
       name: "",
-      project: null,
+      project: { value: 'sobha', label: 'Sobha' },
       phone: "",
       email: "",
     },
@@ -284,7 +284,6 @@ UTM Keywords: ${utm_keywords}`,
                 value={formik.values.project}
                 onChange={(option) => formik.setFieldValue("project", option)}
                 onBlur={() => formik.setFieldTouched("project", true)}
-                placeholder="Select Developer*"
                 className="w-full"
                 styles={{
                   control: (base, state) => ({

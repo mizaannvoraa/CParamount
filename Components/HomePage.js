@@ -12,6 +12,8 @@ import TabSection from "@/Components/TabSection";
 import EnquireNowButton from "@/Components/EnquireNowButton";
 import EnquireModal from "@/Components/EnquireModal";
 import { Poppins } from 'next/font/google';
+import Article from "./Article";
+import FAQ from "./FAQ";
 
 const poppins = Poppins({
   weight: ['300', '400', '600'],
@@ -23,7 +25,7 @@ export default function HomePage({ countryFromURL }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
-    pageview(pathname);
+    pageview(pathname); 
   }, [pathname]);
 
   useEffect(() => {
@@ -42,6 +44,8 @@ export default function HomePage({ countryFromURL }) {
     <div className="bg-[#F3F3F3]">
       <CpAssurance />
       <ProjectVideo />
+    <Article/>
+    <FAQ/>
       <ContactForm countryFromURL={countryFromURL} />
     </div>
     <EnquireNowButton countryFromURL={countryFromURL}/>

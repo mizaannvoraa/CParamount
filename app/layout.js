@@ -1,5 +1,5 @@
 import { Geist, Geist_Mono } from "next/font/google";
-import { GoogleTagManager } from '@next/third-parties/google'; // ✅ Add GTM
+import { GoogleTagManager } from '@next/third-parties/google'; 
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
@@ -15,9 +15,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Welcome to Classic Paramount",
+  title: "Real Estate Dubai | Luxury Villas & Homes in Dubai for Sale",
   description:
-    "We aim to offer comprehensive services, whether it's buying, selling, renting, or managing properties.",
+    "Explore premium Real Estate Dubai listings, including luxurious Villas in Dubai and modern Homes in Dubai. Find your dream property today!",
     icons: {
      icon: '/favicon.ico',
     shortcut: '/favicon.ico',

@@ -11,14 +11,13 @@ import Image from "next/image";
 import ContactModalForm from "./Modal";
 import "animate.css";
 import AnimateCard from "./AnimateCard";
-
-// Tabs
 const tabs = ["All", "Sobha", "Damac", "Emaar", "Binghatti"];
 const projects = [
   {
     id: "B1",
     tab: "Sobha",
     name: "Sobha Aquamont",
+    alt:'Modern Villa in Palm Jumeirah - Villas in Dubai',
     location: "UAE (Umm Al QUAIN Downtown)",
     config: "1,2,3 Bedroom Residences",
     price: "1.11 Million AED",
@@ -31,6 +30,7 @@ const projects = [
     id: "C1",
     tab: "Sobha",
     name: "Sobha Hartland II",
+    alt:'Spacious Family Home in Al Furjan - Homes in Dubai',
     location: "Meydan, Dubai",
     config: "1,2 & 3 Bedroom Apartments & Villas",
     price: "1.3 Million AED",
@@ -43,6 +43,7 @@ const projects = [
     id: "C3",
     tab: "Sobha",
     name: "Sobha Central",
+    alt:'Skyline View Apartment - Real Estate Dubai',
     location: "JLT, Dubai",
     config: " 1,1.5,2 & 3 Bed",
     price: "1.5 Million AED",
@@ -55,6 +56,7 @@ const projects = [
     id: "C4",
     tab: "Damac",
     name: "Damac island",
+    alt:'Luxury villa with private pool in Emirates Hills – Villas in Dubai',
     location: "Dubailand, Dubai",
     config: "4 & 5 Bedroom",
     price: "2.35 Million AED",
@@ -67,6 +69,7 @@ const projects = [
     id: "C5",
     tab: "Damac",
     name: "Damac Chelsea tower",
+    alt:'Family-friendly townhouse in Arabian Ranches – Homes in Dubai',
     location: "Maritime City (DMC), Dubai",
     config: "1, 2 & 3 Bedrooms",
     price: "2.17 Million AED",
@@ -79,6 +82,7 @@ const projects = [
     id: "C6",
     tab: "Damac",
     name: "Damac la Violet 4",
+    alt:'Modern real estate development in Downtown Dubai – Real Estate Dubai',
     location: "DAMAC Hills 2,Dubai",
     config: "4 Bed Townhouse",
     price: "1.9 Million AED",
@@ -91,6 +95,7 @@ const projects = [
     id: "C8",
     tab: "Emaar",
     name: "Emaar Atlan",
+    alt:'Spacious 5-bedroom villa exterior shot – Villas in Dubai',
     location: "Dubai Creek Harbour, Dubai",
     config: "1, 2 & 3 Bedroom Apartments",
     price: "1.6 Million AED",
@@ -103,6 +108,7 @@ const projects = [
     id: "C9",
     tab: "Emaar",
     name: "Emaar Rivera The Valley",
+    alt:'Open-plan living room with skyline views – Homes in Dubai',
     location: "The Valley,Dubai",
     config: " 4 Bedroom Townhouse",
     price: "4.5 Million AED",
@@ -115,6 +121,7 @@ const projects = [
     id: "C10",
     tab: "Emaar",
     name: " Emaar Greenspoint",
+    alt:'Night view of Dubai Marina apartments – Real Estate Dubai',
     location: "Emaar South,Dubai",
     config: "3 & 4 Bedroom Apartments",
     price: "3.5 Million AED",
@@ -127,6 +134,7 @@ const projects = [
     id: "C11",
     tab: "Binghatti",
     name: "Binghatti Hills View ",
+    alt:'Elegant master bedroom in Palm Jumeirah villa – Villas in Dubai',
     location: "Arjan, Dubai",
     config: "1 & 2 Bedroom Apartments",
     price: "750K",
@@ -139,6 +147,7 @@ const projects = [
     id: "C12",
     tab: "Binghatti",
     name: "Binghatti Haven",
+    alt:'New residential community aerial view – Homes in Dubai',
     location: "Sports City, Dubai",
     config: "1 & 2 Bedroom",
     price: "1.2 Million AED",
@@ -151,6 +160,7 @@ const projects = [
     id: "C13",
     tab: "Binghatti",
     name: "BINGHATTI AQUARISE",
+    alt:'Luxury real estate brochure mockup – Real Estate Dubai marketing',
     location: "Business Bay,Dubai",
     config: "1, 2 & 3 Bedrooms",
     price: "1 Million AED",
@@ -163,6 +173,7 @@ const projects = [
     id: "C14",
     tab: "Binghatti",
     name: "Binghatti Mercedes-Benz Places ",
+    alt:'Home buyer exploring property listing online – Real Estate Dubai search',
     location: "Downtown,Dubai",
     config: "2, 3 & 4 Bed",
     price: "10 Million AED",
@@ -278,7 +289,7 @@ export default function TabSection({ countryFromURL = "ae" }) {
                   <div className="bg-white shadow-lg rounded-lg overflow-hidden my-2">
                     <Image
                       src={proj.image}
-                      alt={proj.name}
+                      alt={proj.alt}
                       width={400}
                       height={300}
                       className="w-full h-48 object-cover"

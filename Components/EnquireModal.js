@@ -82,7 +82,7 @@ export default function EnquireModal({ isOpen, onClose,countryFromURL = "ae" }) 
   const formik = useFormik({
     initialValues: {
       name: "",
-      project: null,
+      project: { value: 'sobha', label: 'Sobha' },
       phone: "",
       email: "",
     },
@@ -281,7 +281,6 @@ UTM Keywords: ${utm.utm_keywords}`,
                 value={formik.values.project}
                 onChange={(option) => formik.setFieldValue("project", option)}
                 onBlur={() => formik.setFieldTouched("project", true)}
-                placeholder="Select Developer*"
                 className="w-full"
                 styles={{
                   control: (base, state) => ({
