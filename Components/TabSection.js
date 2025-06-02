@@ -86,7 +86,7 @@ const projects = [
     location: "DAMAC Hills 2,Dubai",
     config: "4 Bed Townhouse",
     price: "1.9 Million AED",
-    image: "/assets/elixir.jpg",
+    image: "/assets/damacviolet.jpg",
     rera: "2354",
     description:
       "Violet 4 is part of a community where every moment becomes a lasting memory. Where you can attend a yoga class, go tanning and float down a lazy river all before lunch.Where your kids can paint the town red, and blue, catch a wave or two and play to their, and your heart's content. This is the community you never knew you needed, and more.",
