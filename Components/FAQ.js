@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import AnimateCard from "./AnimateCard";
 
 const faqs = [
   {
@@ -81,6 +82,7 @@ export default function FAQ() {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
         />
       </Head>
+          <AnimateCard animationClass="animate__zoomIn">
       <div className="container mx-auto px-4 py-1 md:py-10 max-w-[920px]">
         <div className="text-center mb-5 md:mb-10">
           <h2 className="text-[#D2A23A] text-xl md:text-3xl font-bold">
@@ -119,7 +121,7 @@ export default function FAQ() {
             </button>
           </div>
         )}
-      </div>
+      </div></AnimateCard>
     </>
   );
 }

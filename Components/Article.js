@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import AnimateCard from "./AnimateCard";
 
 const articles = [
   {
@@ -103,6 +104,7 @@ export default function Article() {
   const pointsToShow = expanded ? allPoints : allPoints.slice(0, 5);
 
   return (
+    <AnimateCard animationClass="animate__fadeIn">
     <div className="container mx-auto px-4 py-10 max-w-[1080px]">
       <div className="text-center mb-3 md:mb-10">
         <h2 className="text-[#D2A23A] text-xl md:text-3xl font-bold">
@@ -136,5 +138,6 @@ export default function Article() {
         </div>
       </div>
     </div>
+    </AnimateCard>
   );
 }
