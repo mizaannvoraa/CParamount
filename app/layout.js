@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import Navbar from "@/Components/Navbar";
@@ -16,6 +16,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: [
+    "100", "200", "300", "400", "500",
+    "600", "700", "800", "900"
+  ],
+  style: ["normal", "italic"],
+  display: "swap"
+});
 
 export const metadata = {
   title: "Real Estate Dubai | Luxury Villas & Homes in Dubai for Sale",
@@ -27,6 +37,7 @@ export const metadata = {
     apple: "/favicon.ico",
   },
 };
+
 
 export default function RootLayout({ children }) {
   return (
@@ -49,9 +60,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           }}
         />
       </head>
-      <body
-        className={`scroll-smooth ${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+            <body className="scroll-smooth antialiased">
+
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
