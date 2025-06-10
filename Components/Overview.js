@@ -17,13 +17,13 @@ const Overview = () => {
 
         <div className="max-w-[1190px] mx-auto flex flex-col lg:flex-row items-center mt-6 lg:mt-10 gap-6 lg:gap-2">
   <div className="w-full lg:w-1/2 px-2 flex items-center justify-center">
-    <AnimateCard animationClass="animate__backInLeft">
+    <AnimateCard animationClass="animate__fadeIn">
       <Image src='/assets/overview_image.jpg' width={1000} height={500} alt="overview_image" className="w-full h-[320px]"/>
     </AnimateCard>
   </div>
 
   <div className="w-full lg:w-1/2 px-2">
-    <AnimateCard animationClass="animate__backInRight">
+    <AnimateCard animationClass="animate__fadeIn">
       <div className="flex tracking-[1px] text-[17px] text-[#414141] items-start ">
       <p>Welcome to New Projects Dubai, your premier destination for exploring the latest Real Estate Dubai offerings. Whether  you&apos;re seeking luxurious Villas in Dubai or contemporary Homes in Dubai, our platform provides comprehensive listings and insights to help you find your dream property.
 </p>
