@@ -1,17 +1,16 @@
-"use client";
+"use client"
 
-import { useState, useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/autoplay";
-import Image from "next/image";
-import ContactModalForm from "./Modal";
-import "animate.css";
-import AnimateCard from "./AnimateCard";
-const tabs = ["All", "Sobha", "Damac", "Emaar", "Binghatti"];
+import { useState, useRef, useCallback } from "react"
+import { Swiper, SwiperSlide } from "swiper/react"
+import { Autoplay } from "swiper/modules"
+import "swiper/css"
+import "swiper/css/autoplay"
+import Image from "next/image"
+import { ChevronLeft, ChevronRight } from "lucide-react"
+import ContactModalForm from "./Modal"
+
+const tabs = ["All", "Sobha", "Damac", "Emaar", "Binghatti"]
+
 const projects = [
   {
     id: "B1",
@@ -50,7 +49,7 @@ const projects = [
     image: "/assets/Sobha Jlt.jpg",
     rera: "Pre Launch",
     description:
-      "Set along Sheikh Zayed Road, Sobha Central sits at the intersection of movement, meaning, and modernity. With the Dubai skyline as your backdrop and the city’s pulse at your doorstep, this address redefines what it means to live in the centre of it all. Designed for those who seek balance—between work and home, pace and pause—it o ers direct access to business hubs, retail districts, and the vibrant energy of urban life.",
+      "Set along Sheikh Zayed Road, Sobha Central sits at the intersection of movement, meaning, and modernity. With the Dubai skyline as your backdrop and the city's pulse at your doorstep, this address redefines what it means to live in the centre of it all. Designed for those who seek balance—between work and home, pace and pause—it o ers direct access to business hubs, retail districts, and the vibrant energy of urban life.",
   },
   {
     id: "C4",
@@ -76,7 +75,7 @@ const projects = [
     image: "/assets/D2.jpg",
     rera: "3719",
     description:
-      "The towers are a distillation of Chelsea’s very essence - their passion, pride as well as purpose and brought to life in the most luxuriously timeless way possible. Each of the towers blurs the line between contemporary urban and indulgent, waterfront resort-style living like never before.",
+      "The towers are a distillation of Chelsea's very essence - their passion, pride as well as purpose and brought to life in the most luxuriously timeless way possible. Each of the towers blurs the line between contemporary urban and indulgent, waterfront resort-style living like never before.",
   },
   {
     id: "C6",
@@ -102,7 +101,7 @@ const projects = [
     image: "/assets/E1.jpg",
     rera: "Pre Launch",
     description:
-      "Life at Altan is a blissful getaway, where the creek shimmers,the city skyline inspires, and nature invites you to unwind.Glide through calm waters, stroll through vibrant promenades,and find peace in lush gardens. At Altan, home is more thanjust a place—it’s an experience.",
+      "Life at Altan is a blissful getaway, where the creek shimmers,the city skyline inspires, and nature invites you to unwind.Glide through calm waters, stroll through vibrant promenades,and find peace in lush gardens. At Altan, home is more thanjust a place—it's an experience.",
   },
   {
     id: "C9",
@@ -128,7 +127,7 @@ const projects = [
     image: "/assets/EmaarGreen.jpg",
     rera: "3558",
     description:
-      "Greenspoint isn’t just a home—it’s a vibrant community built to keep you moving. Glide through dedicated cycling trails, jog beneath the shade of lush trees, or unwind with your family in the neighbourhood parks. Here, every path leads to a life full of energy and vitality.",
+      "Greenspoint isn't just a home—it's a vibrant community built to keep you moving. Glide through dedicated cycling trails, jog beneath the shade of lush trees, or unwind with your family in the neighbourhood parks. Here, every path leads to a life full of energy and vitality.",
   },
   {
     id: "C11",
@@ -180,194 +179,244 @@ const projects = [
     image: "/assets/B4.jpg",
     rera: "2545",
     description:
-      "Defined as an epochal architectural symbol, the hyper-tower’s design supremacy is brought to life by the amalgamation of multiple design languages. The use of intricate strokes, mingled with the candescent pattern of the Mercedes-Benz three-pointed star create a form that lives and breathes the spirit of revolutionary architecture and craftsmanship.",
+      "Defined as an epochal architectural symbol, the hyper-tower's design supremacy is brought to life by the amalgamation of multiple design languages. The use of intricate strokes, mingled with the candescent pattern of the Mercedes-Benz three-pointed star create a form that lives and breathes the spirit of revolutionary architecture and craftsmanship.",
   },
 ];
 
+
 export default function TabSection({ countryFromURL = "ae" }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState("All");
-  const [selectedProjectName, setSelectedProjectName] = useState("");
-  const [isExpanded, setIsExpanded] = useState({});
-  const swiperRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState("All")
+  const [selectedProjectName, setSelectedProjectName] = useState("")
+  const [isExpanded, setIsExpanded] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
+  const [autoplayPaused, setAutoplayPaused] = useState(false) // Track autoplay state
+  const swiperRef = useRef(null)
 
-  const filteredProjects =
-    activeTab === "All"
-      ? projects
-      : projects.filter((proj) => proj.tab === activeTab);
+  const filteredProjects = activeTab === "All" ? projects : projects.filter((proj) => proj.tab === activeTab)
 
-  const toggleDescription = (projectId) => {
+  // Function to pause autoplay
+  const pauseAutoplay = useCallback(() => {
+    if (swiperRef.current?.autoplay) {
+      swiperRef.current.autoplay.stop()
+      setAutoplayPaused(true)
+    }
+  }, [])
+
+  // Function to resume autoplay
+  const resumeAutoplay = useCallback(() => {
+    if (swiperRef.current?.autoplay) {
+      swiperRef.current.autoplay.start()
+      setAutoplayPaused(false)
+    }
+  }, [])
+
+  const toggleDescription = useCallback((projectId) => {
+    // Pause autoplay when expanding description
+    if (!isExpanded[projectId]) {
+      pauseAutoplay()
+    } else {
+      // Resume autoplay when collapsing description
+      resumeAutoplay()
+    }
+    
     setIsExpanded((prev) => ({
       ...prev,
       [projectId]: !prev[projectId],
-    }));
-  };
+    }))
+  }, [isExpanded, pauseAutoplay, resumeAutoplay])
 
-  const handleOpenModal = (projectName) => {
-    swiperRef.current?.autoplay?.stop();
-    setSelectedProjectName(projectName);
-    setIsOpen(true);
-  };
+  const handleOpenModal = useCallback((projectName) => {
+    // Pause autoplay when opening modal
+    pauseAutoplay()
+    setSelectedProjectName(projectName)
+    setIsOpen(true)
+  }, [pauseAutoplay])
 
-  const handleCloseModal = () => {
-    swiperRef.current?.autoplay?.start();
-    setIsOpen(false);
-  };
+  const handleCloseModal = useCallback(() => {
+    // Resume autoplay when modal closes
+    setTimeout(() => {
+      resumeAutoplay()
+    }, 100)
+    setIsOpen(false)
+  }, [resumeAutoplay])
 
-  const shouldEnableLoop = filteredProjects.length > 3;
+  const handleTabChange = useCallback((tab) => {
+    setIsLoading(true)
+    setActiveTab(tab)
+    // Reset expanded states when changing tabs
+    setIsExpanded({})
+    // Resume autoplay when changing tabs
+    resumeAutoplay()
+
+    // Simulate loading to prevent layout shifts
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 100)
+  }, [resumeAutoplay])
+
+  // Ensure we have enough slides for smooth operation
+  const shouldEnableLoop = filteredProjects.length > 1
+  const slidesToShow = Math.min(filteredProjects.length, 3)
 
   return (
     <>
-      <div
-        className="max-w-7xl mx-auto px-4 md:py-12 py-6 bg-white"
-        id="projects"
-      >
+      <div className="max-w-7xl mx-auto px-4 md:pt-12 pt-6 bg-white" id="projects">
         <div className="text-center">
-          <h2 className="text-[#D2A23A] mt-4 text-2xl md:text-3xl font-extrabold">
-            PROJECTS
-          </h2>
+          <h2 className="text-[#D2A23A] mt-4 text-2xl md:text-3xl font-extrabold">PROJECTS</h2>
           <div className="mx-auto mt-[1px] w-19 lg:w-29 h-1 bg-black rounded"></div>
         </div>
 
         {/* Tabs */}
-        <AnimateCard animationClass="animate__slideInDown">
-          <div className="flex flex-wrap space-x-4 mb-6 mt-8 items-center justify-center">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2 rounded-[5px] border mt-[7px] cursor-pointer ${
-                  activeTab === tab
-                    ? "bg-transparent text-[#b6800c] border-2 border-[#D09E32]"
-                    : "bg-[#D09E32] border-0 text-white"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
+        <div className="flex flex-wrap gap-2 mb-6 mt-8 items-center justify-center">
+          {tabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => handleTabChange(tab)}
+              disabled={isLoading}
+              className={`px-6 py-2 rounded-[5px] border transition-all duration-200 ${
+                activeTab === tab
+                  ? "bg-transparent text-[#b6800c] border-2 border-[#D09E32]"
+                  : "bg-[#D09E32] border-0 text-white hover:bg-[#b6800c]"
+              } ${isLoading ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {/* Loading State */}
+        {isLoading && (
+          <div className="flex justify-center items-center py-12">
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#D09E32]"></div>
           </div>
-        </AnimateCard>
+        )}
 
-        {/* Swiper */}
-        <div className="relative">
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={20}
-            slidesPerView={1}
-            loop={shouldEnableLoop}
-            autoplay={{
-              delay: 3000,
-              disableOnInteraction: false,
-            }}
-            onSwiper={(swiper) => {
-              swiperRef.current = swiper;
-            }}
-            navigation={{
-              nextEl: ".custom-swiper-button-next",
-              prevEl: ".custom-swiper-button-prev",
-            }}
-            pagination={{
-              el: ".custom-swiper-pagination",
-              clickable: true,
-              dynamicBullets: true,
-            }}
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 2 },
-              1024: { slidesPerView: 3 },
-            }}
-            className="mySwiper"
-          >
-            {filteredProjects.map((proj) => (
-              <SwiperSlide
-                key={proj.id}
-                className="!bg-white"
-                onMouseEnter={() => swiperRef.current?.autoplay?.stop()}
-                onMouseLeave={() => swiperRef.current?.autoplay?.start()}
-              >
-                <AnimateCard animationClass="animate__zoomIn">
-                  <div className="bg-white shadow-lg rounded-lg overflow-hidden my-2">
-                    <Image
-                      src={proj.image}
-                      alt={proj.alt}
-                      width={400}
-                      height={300}
-                      className="w-full h-48 object-cover"
-                    />
-                    <div className="max-w-4xl mx-auto bg-white border border-gray-300 p-2 shadow-sm text-sm">
-                      <h3 className="text-gray-900 text-[14px] font-black pb-1 mb-2 border-b border-[#ccc]">
-                        {proj.name}
-                      </h3>
-
-                      <p className="text-gray-900 text-[14px] font-extralight leading-relaxed">
-                        {isExpanded[proj.id]
-                          ? proj.description
-                          : `${proj.description.slice(0, 130)}...`}
-                      </p>
-
-                      <button
-                        className="text-yellow-600 font-semibold text-[13px] my-[2px] cursor-pointer hover:underline focus:outline-none"
-                        onClick={() => toggleDescription(proj.id)}
-                      >
-                        {isExpanded[proj.id] ? "Read less" : "Read more"}
-                      </button>
-
-                      <div className="pt-4 text-gray-900">
-                        <div className="flex flex-col gap-y-3">
-                          {[
-                            { label: "Rera No.", value: proj.rera },
-                            { label: "Location", value: proj.location },
-                            { label: "Configuration", value: proj.config },
-                            { label: "Starting Price", value: proj.price },
-                          ].map(({ label, value }) => (
-                            <div
-                              key={label}
-                              className="border-b text-xs font-extralight pb-[2px] border-gray-300 flex justify-between sm:pr-1"
-                            >
-                              <span className="font-medium text-gray-900">
-                                {label}
-                              </span>
-                              <span className="text-gray-900 text-right">
-                                {value}
-                              </span>
-                            </div>
-                          ))}
+        {/* Swiper Container with Fixed Height to Prevent CLS */}
+        {!isLoading && (
+          <div className="relative" style={{ minHeight: "600px" }}>
+            {filteredProjects.length > 0 ? (
+              <>
+                <Swiper
+                  modules={[ Autoplay]}
+                  spaceBetween={20}
+                  slidesPerView={1}
+                  loop={filteredProjects.length > 1}
+                  autoplay={{
+                    delay: 3000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: false,
+                    waitForTransition: true,
+                  }}
+                  speed={600}
+                  onSwiper={(swiper) => {
+                    swiperRef.current = swiper
+                  }}
+                  onSlideChange={() => {
+                    // Only restart autoplay if it's not intentionally paused
+                    if (!autoplayPaused && swiperRef.current?.autoplay) {
+                      swiperRef.current.autoplay.start()
+                    }
+                  }}
+                 
+                  breakpoints={{
+                    640: { slidesPerView: 1 },
+                    768: { slidesPerView: Math.min(2, slidesToShow) },
+                    1024: { slidesPerView: Math.min(3, slidesToShow) },
+                  }}
+                  className="mySwiper pb-12"
+                >
+                  {filteredProjects.map((proj) => (
+                    <SwiperSlide key={proj.id} className="!bg-white">
+                      <div className="bg-white shadow-xl rounded-lg overflow-hidden h-full">
+                        {/* Fixed height image container to prevent CLS */}
+                        <div className="relative w-full h-48 bg-gray-100">
+                          <Image
+                            src={proj.image || "/placeholder.svg"}
+                            alt={proj.alt}
+                            fill
+                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover"
+                            priority={activeTab === "All" || proj.tab === activeTab}
+                          />
                         </div>
 
-                        <div className="flex flex-col gap-3 mt-3">
-                          <div className="flex border-b text-xs font-normal text-gray-900 border-gray-300 items-center justify-between">
-                            For more details
+                        <div className="px-2 py-1">
+                          <h3 className="text-gray-900 text-lg font-bold pb-1 mb-1 border-b border-gray-200">
+                            {proj.name}
+                          </h3>
+
+                          {/* Fixed height description container to prevent CLS */}
+                          <div className="" style={{ minHeight: "100px" }}>
+                            <p className="text-gray-700 text-sm leading-relaxed">
+                              {isExpanded[proj.id] ? proj.description : `${proj.description.slice(0, 130)}...`}
+                            </p>
+
                             <button
-                              onClick={() => handleOpenModal(proj.name)}
-                              className="bg-[#D09E32] text-xs mb-1 text-white px-4 py-[6px] cursor-pointer hover:bg-yellow-700"
+                              className="text-[#D09E32] font-semibold text-sm mt-2 hover:underline focus:outline-none transition-colors"
+                              onClick={() => toggleDescription(proj.id)}
                             >
-                              Click Here
+                              {isExpanded[proj.id] ? "Read less" : "Read more"}
                             </button>
                           </div>
-                          <div className="flex items-center justify-between font-semibold">
-                            <span className="text-black text-xs">
-                              Download Brochure
-                            </span>
-                            <button
-                              onClick={() => handleOpenModal(proj.name)}
-                              className="bg-[#D09E32] text-xs mb-1 text-white px-4 py-[6px] cursor-pointer hover:bg-yellow-700"
-                            >
-                              Click Here
-                            </button>
+
+                          <div className="space-y-1">
+                            {[
+                              { label: "Rera No.", value: proj.rera },
+                              { label: "Location", value: proj.location },
+                              { label: "Configuration", value: proj.config },
+                              { label: "Starting Price", value: proj.price },
+                            ].map(({ label, value }) => (
+                              <div
+                                key={label}
+                                className="flex justify-between items-center py-1 border-b border-gray-200 text-sm"
+                              >
+                                <span className="font-medium text-gray-900">{label}</span>
+                                <span className="text-gray-700 text-right">{value}</span>
+                              </div>
+                            ))}
+                          </div>
+
+                          <div className="mt-2 space-y-3">
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm font-medium text-gray-900">For more details</span>
+                              <button
+                                onClick={() => handleOpenModal(proj.name)}
+                                className="bg-[#D09E32] text-white px-4 py-1 text-sm rounded hover:bg-[#b6800c] transition-colors"
+                              >
+                                Click Here
+                              </button>
+                            </div>
+
+                            <div className="flex justify-between items-center">
+                              <span className="text-sm font-medium text-gray-900">Download Brochure</span>
+                              <button
+                                onClick={() => handleOpenModal(proj.name)}
+                                className="bg-[#D09E32] text-white px-4 py-1 text-sm rounded hover:bg-[#b6800c] transition-colors"
+                              >
+                                Click Here
+                              </button>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </AnimateCard>
-              </SwiperSlide>
-            ))}
-          </Swiper>
-
-          <div className="w-full flex items-center gap-1 ml-4 justify-center mt-4">
-            <div className="custom-swiper-pagination"></div>
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+              </>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12">
+                <div className="text-gray-500 text-lg mb-4">No projects found for this category</div>
+                <button
+                  onClick={() => handleTabChange("All")}
+                  className="bg-[#D09E32] text-white px-6 py-1 rounded hover:bg-[#b6800c] transition-colors"
+                >
+                  View All Projects
+                </button>
+              </div>
+            )}
           </div>
-        </div>
+        )}
       </div>
 
       {isOpen && (
@@ -378,5 +427,5 @@ export default function TabSection({ countryFromURL = "ae" }) {
         />
       )}
     </>
-  );
+  )
 }

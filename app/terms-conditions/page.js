@@ -1,5 +1,8 @@
-import Head from 'next/head';
-
+export const metadata = {
+  title: 'Terms & Conditions - New Projects Dubai',
+  description:
+    'Read the full Terms & Conditions of using New Projects Dubai including disclaimers, legal use, and user conduct policies.',
+};
 export default function TermsAndConditions() {
   return (
     <div className="bg-white">
