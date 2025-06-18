@@ -82,22 +82,29 @@ const Footer = () => {
           </div>
         </div>
       </footer>
-        <div className="border-t md:pb-4 pb-13 border-gray-700 py-4 px-4 text-sm text-gray-300 flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-center">
+        <div className="border-t md:pb-2 pb-13 border-gray-700 py-2 px-4 text-sm text-gray-300 flex flex-col sm:flex-row items-center justify-center space-y-2 sm:space-y-0 sm:space-x-4 text-center">
       <Link
         href="https://cparamount.com/privacy-policy/"
-        className="hover:underline tracking-widest font-medium"
+        className="hover:underline tracking-widest font-medium text-[11px]"
       >
         PRIVACY POLICY
       </Link>
       <span className="hidden sm:inline-block border-l h-4 border-gray-500"></span>
-      <p className="tracking-widest font-medium">© 2025 ALL RIGHTS RESERVED</p>
+      <p className="tracking-widest font-medium text-[11px]">© 2025 ALL RIGHTS RESERVED</p>
       <span className="hidden sm:inline-block border-l h-4 border-gray-500"></span>
        <Link
         href="/terms-conditions"
-        className="hover:underline tracking-widest font-medium uppercase "
+        className="hover:underline tracking-widest font-medium uppercase  text-[11px]"
       >
         Terms & Conditions
       </Link>
+      <span className="hidden sm:inline-block border-l h-4 border-gray-500"></span>
+      <p className="tracking-widest font-medium uppercase text-[11px]">Designed & Developed by
+       <Link
+        href="https://nuvoraa.com/"
+        className="hover:underline tracking-widest text-white font-medium uppercase text-[11px]"
+      > Nuvoraa Digital
+      </Link></p>
     </div>
     </div>
   );
